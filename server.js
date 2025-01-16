@@ -1,17 +1,11 @@
 const express = require('express');
 const { startBrowser, linkedinLogin, scrapeProfiles } = require('./app');
-const cors = require('cors');
 
 
 const app = express();
 const port = 3000;
 
 let browser, page;
-app.use(
-  cors({
-    origin: 'http://localhost:3000', // Replace with your frontend's URL
-  })
-);
 
 app.use(express.json());
 app.get('/', (req, res) => {
