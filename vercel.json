@@ -1,6 +1,8 @@
 {
-    "version": 2,
-    "builds": [{ "src": "server.js", "use": "@vercel/node" }],
-    "routes": [{ "src": "/(.*)", "dest": "server.js" }]
-  }
-  
+  "version": 2,
+  "routes": [
+    { "src": "/linkedin-login", "dest": "/api/server.js" },
+    { "src": "/scrape-profiles", "dest": "/api/server.js" },
+    { "src": "/close-session", "dest": "/api/server.js" }
+  ]
+}
