@@ -1,4 +1,3 @@
-require('dotenv').config(); // Add this line at the top to load .env variables
 const express = require('express');
 const cors = require('cors'); // Import the CORS package
 const { startBrowser, linkedinLogin, scrapeProfiles } = require('./app');
