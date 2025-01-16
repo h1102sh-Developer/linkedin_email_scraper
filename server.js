@@ -1,4 +1,6 @@
+require('dotenv').config(); // Add this line at the top to load .env variables
 const express = require('express');
+const cors = require('cors'); // Import the CORS package
 const { startBrowser, linkedinLogin, scrapeProfiles } = require('./app');
 
 const app = express();
@@ -6,14 +8,19 @@ const port = 3000;
 
 let browser, page;
 
+// Enable CORS for all routes
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the LinkedIn Email Scraper API! Available routes: /linkedin-login, /scrape-profiles, /close-session');
+  res.send(
+    'Welcome to the LinkedIn Email Scraper API! Available routes: /linkedin-login, /scrape-profiles, /close-session'
+  );
 });
 
 app.post('/linkedin-login', async (req, res) => {
-  const { username, password } = req.body;
+  const username = process.env.LINKEDIN_USERNAME || req.body.username;
+  const password = process.env.LINKEDIN_PASSWORD || req.body.password;
 
   if (!username || !password) {
     return res.status(400).json({ error: 'Username and password are required.' });
