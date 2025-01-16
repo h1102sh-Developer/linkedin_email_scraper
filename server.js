@@ -8,6 +8,10 @@ let browser, page;
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the LinkedIn Email Scraper API! Available routes: /linkedin-login, /scrape-profiles, /close-session');
+});
+
 app.post('/linkedin-login', async (req, res) => {
   const { username, password } = req.body;
 
