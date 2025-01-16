@@ -15,7 +15,7 @@ app.use(
 
 app.use(express.json());
 app.get('/', (req, res) => {
-  res.send('Welcome to the LinkedIn Email Scraper API! The Available routes are: /linkedin-login, /scrape-profiles, /close-session');
+  res.send('Welcome to the LinkedIn Email Scraper API! Available routes are: /linkedin-login, /scrape-profiles, /close-session');
 });
 
 
