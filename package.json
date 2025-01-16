@@ -1,0 +1,16 @@
+{
+  "name": "linkedin-scraper-api",
+  "version": "1.0.0",
+  "description": "API for scraping LinkedIn Email from profiles using Puppeteer",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "fake-useragent": "^1.0.1",
+    "puppeteer": "^24.0.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}

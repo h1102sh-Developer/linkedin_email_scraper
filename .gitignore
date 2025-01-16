@@ -1,0 +1,42 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Vercel specific
+.vercel/
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Build output
+/build/
+dist/
+coverage/
+
+# Temporary files
+*.tmp
+*.swp
+*.log
+
+# Other specific excludes (optional)
+# If you're using Puppeteer or similar tools:
+puppeteer_temp/
+
+# If you’re using NPM lock or Yarn:
+# Uncomment the one you aren’t using
+# package-lock.json
+# yarn.lock
