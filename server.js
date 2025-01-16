@@ -1,11 +1,13 @@
 const express = require('express');
 const { startBrowser, linkedinLogin, scrapeProfiles } = require('./app');
+const cors = require('cors');
+
 
 const app = express();
 const port = 3000;
 
 let browser, page;
-
+app.use(cors());
 app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Welcome to the LinkedIn Email Scraper API! The Available routes are: /linkedin-login, /scrape-profiles, /close-session');
