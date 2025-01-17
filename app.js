@@ -17,12 +17,25 @@ const startBrowser = async () => {
 };
 
 const linkedinLogin = async (page, username, password) => {
-  await page.goto('https://www.linkedin.com/login');
-  await page.type('#username', username);
-  await page.type('#password', password);
-  await page.click('.btn__primary--large');
-  await page.waitForNavigation();
-  console.log('Logged in successfully');
+  try {
+    console.log('Navigating to LinkedIn login...');
+    await page.goto('https://www.linkedin.com/login', { waitUntil: 'networkidle2' });
+
+    console.log('Typing username...');
+    await page.type('#username', username, { delay: 100 });
+
+    console.log('Typing password...');
+    await page.type('#password', password, { delay: 100 });
+
+    console.log('Clicking login button...');
+    await page.click('.btn__primary--large');
+
+    await page.waitForNavigation({ waitUntil: 'networkidle2' });
+    console.log('Logged in successfully');
+  } catch (error) {
+    console.error('LinkedIn login error:', error.message);
+    throw new Error('LinkedIn login failed.');
+  }
 };
 
 const scrapeProfiles = async (page, profileLinks) => {
