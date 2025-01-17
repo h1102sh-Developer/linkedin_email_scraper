@@ -13,6 +13,7 @@ yarn-error.log*
 
 # Vercel specific
 .vercel/
+.vercel/cache/
 
 # IDE settings
 .vscode/
@@ -32,11 +33,5 @@ coverage/
 *.swp
 *.log
 
-# Other specific excludes (optional)
-# If you're using Puppeteer or similar tools:
+# Puppeteer temporary files
 puppeteer_temp/
-
-# If you’re using NPM lock or Yarn:
-# Uncomment the one you aren’t using
-# package-lock.json
-# yarn.lock
