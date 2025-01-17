@@ -13,24 +13,16 @@ app.get('/', (req, res) => {
 });
 
 app.post('/linkedin-login', async (req, res) => {
-  console.log('Environment Variables:', process.env);
-  const username = process.env.LINKEDIN_USERNAME || req.body.username;
-  const password = process.env.LINKEDIN_PASSWORD || req.body.password;
-  console.log('Username:', process.env.LINKEDIN_USERNAME);
-console.log('Password:', process.env.LINKEDIN_PASSWORD);
-
-
-  if (!username || !password) {
-    return res.status(400).json({ error: 'Username and password are required.' });
-  }
-
+  const { browser, page } = await startBrowser();
+  
   try {
-    ({ browser, page } = await startBrowser());
-    await linkedinLogin(page, username, password);
-    res.status(200).json({ message: 'Logged in successfully.' });
-  } catch (err) {
-    console.error('Login error:', err.message);
-    res.status(500).json({ error: 'Login failed.' });
+    await linkedinLogin(page, process.env.LINKEDIN_USERNAME, process.env.LINKEDIN_PASSWORD);
+    const results = await scrapeProfiles(page, req.body.profileLinks);
+    res.status(200).json(results);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  } finally {
+    await browser.close();
   }
 });
 
