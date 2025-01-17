@@ -16,6 +16,9 @@ app.post('/linkedin-login', async (req, res) => {
   console.log('Environment Variables:', process.env);
   const username = process.env.LINKEDIN_USERNAME || req.body.username;
   const password = process.env.LINKEDIN_PASSWORD || req.body.password;
+  console.log('Username:', process.env.LINKEDIN_USERNAME);
+console.log('Password:', process.env.LINKEDIN_PASSWORD);
+
 
   if (!username || !password) {
     return res.status(400).json({ error: 'Username and password are required.' });
