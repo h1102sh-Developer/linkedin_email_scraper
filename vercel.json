@@ -4,9 +4,9 @@
     { "src": "server.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/linkedin-login", "dest": "/api/server.js" },
-    { "src": "/scrape-profiles", "dest": "/api/server.js" },
-    { "src": "/close-session", "dest": "/api/server.js" },
-    { "src": "/(.*)", "dest": "server.js" }
+    { "src": "/linkedin-login", "dest": "server.js" },
+    { "src": "/scrape-profiles", "dest": "server.js" },
+    { "src": "/close-session", "dest": "server.js" },
+    { "src": "/", "dest": "server.js" }
   ]
 }
