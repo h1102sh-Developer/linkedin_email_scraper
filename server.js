@@ -1,4 +1,3 @@
-require('dotenv').config(); // Add this line at the top to load .env variables
 const express = require('express');
 const { startBrowser, linkedinLogin, scrapeProfiles } = require('./app');
 
