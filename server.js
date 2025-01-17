@@ -1,5 +1,7 @@
 const express = require('express');
 const { startBrowser, linkedinLogin, scrapeProfiles } = require('./app');
+require('dotenv').config(); // Add this line at the top to load .env variables
+
 
 const app = express();
 let browser, page;
@@ -7,7 +9,7 @@ let browser, page;
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the LinkedIn Email Scraper API! Available routes: /linkedin-login, /scrape-profiles, /close-session');
+  res.send('Welcome to the LinkedIn Email Scraper API! Available routes are: /linkedin-login, /scrape-profiles, /close-session');
 });
 
 app.post('/linkedin-login', async (req, res) => {
