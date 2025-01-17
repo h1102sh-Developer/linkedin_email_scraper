@@ -2,15 +2,13 @@ const express = require('express');
 const { startBrowser, linkedinLogin, scrapeProfiles } = require('./app');
 
 const app = express();
-const port = 3000;
-
 let browser, page;
 
 app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('Welcome to the LinkedIn Email Scraper API! Available routes: /linkedin-login, /scrape-profiles, /close-session');
 });
-
 
 app.post('/linkedin-login', async (req, res) => {
   const username = process.env.LINKEDIN_USERNAME || req.body.username;
@@ -61,6 +59,4 @@ app.post('/close-session', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+module.exports = app; // Export the app for serverless deployment
