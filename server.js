@@ -13,6 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/linkedin-login', async (req, res) => {
+  console.log('Environment Variables:', process.env);
   const username = process.env.LINKEDIN_USERNAME || req.body.username;
   const password = process.env.LINKEDIN_PASSWORD || req.body.password;
 
