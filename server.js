@@ -8,12 +8,7 @@ const app = express();
 let browser, page;
 
 app.use(express.json());
-app.use(cors({
-  origin: '*',  // Allow all origins
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-
+app.use(cors());
 
 
 app.get('/', (req, res) => {
@@ -21,8 +16,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/linkedin-login', async (req, res) => {
-  const username = req.body.username;  // Removed process.env
-  const password = req.body.password;  // Removed process.env
+  const username = req.body.username;
+  const password = req.body.password;
 
   if (!username || !password) {
     return res.status(400).json({ error: 'Username and password are required.' });
@@ -33,10 +28,11 @@ app.post('/linkedin-login', async (req, res) => {
     await linkedinLogin(page, username, password);
     res.status(200).json({ message: 'Logged in successfully.' });
   } catch (err) {
-    console.error('Login error:', err.message);
-    res.status(500).json({ error: 'Login failed.' });
+    console.error('Login error:', err); // Print the full error object
+    res.status(500).json({ error: `Login failed. Reason: ${err.message}` });
   }
 });
+
 
 app.post('/scrape-profiles', async (req, res) => {
   const { profileLinks } = req.body;
