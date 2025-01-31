@@ -1,23 +1,24 @@
 const express = require('express');
 const { startBrowser, linkedinLogin, scrapeProfiles } = require('./app');
 require('dotenv').config(); // Add this line at the top to load .env variables
-const cors = require('cors');
 
 
 const app = express();
 let browser, page;
 
 app.use(express.json());
-app.use(cors());
-
 
 app.get('/', (req, res) => {
   res.send('Welcome to the LinkedIn Email Scraper API! Available routes are: /linkedin-login, /scrape-profiles, /close-session');
 });
 
 app.post('/linkedin-login', async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  console.log('Environment Variables:', process.env);
+  const username = process.env.LINKEDIN_USERNAME || req.body.username;
+  const password = process.env.LINKEDIN_PASSWORD || req.body.password;
+  console.log('Username:', process.env.LINKEDIN_USERNAME);
+console.log('Password:', process.env.LINKEDIN_PASSWORD);
+
 
   if (!username || !password) {
     return res.status(400).json({ error: 'Username and password are required.' });
@@ -28,11 +29,10 @@ app.post('/linkedin-login', async (req, res) => {
     await linkedinLogin(page, username, password);
     res.status(200).json({ message: 'Logged in successfully.' });
   } catch (err) {
-    console.error('Login error:', err); // Print the full error object
-    res.status(500).json({ error: `Login failed. Reason: ${err.message}` });
+    console.error('Login error:', err.message);
+    res.status(500).json({ error: 'Login failed.' });
   }
 });
-
 
 app.post('/scrape-profiles', async (req, res) => {
   const { profileLinks } = req.body;
