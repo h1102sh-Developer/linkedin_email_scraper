@@ -1,12 +1,15 @@
 const express = require('express');
 const { startBrowser, linkedinLogin, scrapeProfiles } = require('./app');
 require('dotenv').config(); // Add this line at the top to load .env variables
+const cors = require('cors');
 
 
 const app = express();
 let browser, page;
 
 app.use(express.json());
+app.use(cors());
+
 
 app.get('/', (req, res) => {
   res.send('Welcome to the LinkedIn Email Scraper API! Available routes are: /linkedin-login, /scrape-profiles, /close-session');
