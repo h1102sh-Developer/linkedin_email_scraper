@@ -8,7 +8,12 @@ const app = express();
 let browser, page;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: '*',  // Allow all origins
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 
 
 app.get('/', (req, res) => {
